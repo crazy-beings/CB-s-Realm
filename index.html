@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CB's Realm</title>
+
+  <!-- 🔗 Styles -->
+  <link rel="stylesheet" href="styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- 🔝 Navigation Bar -->
+  <nav class="futuristic-nav glass">
+    <div class="brand-info">
+      <img src="https://i.ibb.co/kVMy94gR/RGB-Speaker.jpg" alt="CB's Realm Logo" class="brand-logo" />
+      <div class="brand-text">
+        <span class="brand-title">CB's Realm</span>
+        <span class="brand-tagline">Win. Earn. Dominate.</span>
+      </div>
+    </div>
+    <span id="coin-balance" class="nav-item nav-coins">
+      💰 <span id="top-coin">0</span> Coins
+    </span>
+    <img id="user-pic" class="hidden profile-pic-small nav-item" alt="Profile Pic" />
+    <button id="google-login" class="nav-button">🔐 Continue with Google</button>
+  </nav>
+
+  <!-- 🏆 Tournaments Section -->
+  <section id="home-section" class="fade-section">
+    <h1 class="section-heading">🏆 <span>Active Tournaments</span></h1>
+
+    <!-- Filters -->
+    <div class="tournament-categories">
+      <button class="category-tab active" data-filter="all">All</button>
+      <button class="category-tab" data-filter="br">BR</button>
+      <button class="category-tab" data-filter="cs">CS</button>
+      <button class="category-tab" data-filter="others">Others</button>
+    </div>
+    <div class="tournament-subfilters hidden" id="match-filters">
+      <button class="subfilter-tab active" data-filter="all">All Matches</button>
+      <button class="subfilter-tab" data-filter="solo">Solo</button>
+      <button class="subfilter-tab" data-filter="duo">Duo</button>
+      <button class="subfilter-tab" data-filter="squad">Squad</button>
+    </div>
+
+    <div class="tournament-grid" id="tournament-list">
+    </div>
+    <p id="no-tournaments-message" class="hidden">No tournaments available in this section.</p>
+  </section>
+
+  <!-- 💸 Wallet Section -->
+  <section id="coin-wallet-section" class="hidden fade-section">
+    <button class="back-button" onclick="goToHome()">← Back</button>
+    <h1 class="section-heading">💸 <span class="neon-text">Your Wallet</span></h1>
+
+    <div class="coin-card glass">
+      <h2>💰 Balance: <span id="wallet-coins">0</span> Coins</h2>
+      <p>Earn more by joining tournaments or buying from the store.</p>
+    </div>
+  </section>
+
+  <!-- 👤 Profile Section -->
+  <section id="profile-section" class="hidden fade-section">
+    <button class="back-button" onclick="goToHome()">← Back</button>
+    <h1 class="section-heading">👤 <span class="neon-text">My Profile</span></h1>
+
+    <div class="profile-card glass">
+      <img id="profile-pic" class="profile-pic-large" src="" alt="Profile" />
+      <div class="profile-info">
+        <p><strong>Email:</strong> <span id="player-email">N/A</span></p>
+        <p><strong>UID:</strong> <span id="player-uid">N/A</span></p>
+        <p><strong>Name:</strong> <span id="player-name">N/A</span></p>
+        <p><strong>Region:</strong> <span id="player-region">N/A</span></p>
+        <p><strong>Phone:</strong> <span id="player-phone">N/A</span></p>
+        <p><strong>Coins:</strong> <span id="player-coins">0</span></p>
+      </div>
+    </div>
+    <div class="profile-actions">
+      <button id="joined-tournaments-btn" class="nav-button">🏆 Joined Tournaments</button>
+      <button id="logout-btn" class="nav-button logout-button">🚪 Logout</button>
+    </div>
+  </section>
+  
+  <!-- 🏆 Joined Tournaments Section -->
+  <section id="joined-tournaments-section" class="hidden fade-section">
+    <button class="back-button" onclick="goToProfile()">← Back</button>
+    <h1 class="section-heading">🏆 <span class="neon-text">Joined Tournaments</span></h1>
+    <div id="joined-tournaments-list" class="tournament-grid"></div>
+    <p id="no-joined-tournaments-message" class="hidden">You have not joined any tournaments yet.</p>
+  </section>
+
+  <!-- 🎯 Join Modal -->
+  <div id="join-tournament-modal" class="modal hidden">
+    <div class="modal-content join-modal glass">
+      <h2>🎯 Join Tournament</h2>
+      <p id="join-tournament-name"></p>
+      <div class="join-disclaimer">
+        <p>📢 Room ID & Password 10 minutes before match</p>
+        <p>🕒 Match Date: <span id="join-tournament-time"></span></p>
+        <p>💰 Refund on cancelation</p>
+      </div>
+      <input type="hidden" id="join-tournament-id" />
+      <div class="modal-actions">
+        <button id="confirm-join-btn" class="nav-button confirm-button">✅ Confirm</button>
+        <button id="cancel-join-btn" class="nav-button secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- 🔌 Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script type="module" src="scripts/firebase.js"></script>
+  <script type="module" src="scripts/ui.js"></script>
+  <script type="module" src="scripts/router.js"></script>
+  <script type="module" src="scripts/index.js"></script>
+  <script type="module" src="scripts/app.js"></script>
+
+</body>
+</html>

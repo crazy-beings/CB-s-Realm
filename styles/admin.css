@@ -1,0 +1,422 @@
+/* =============================== */
+/* 🌐 CB's Realm Admin Panel Theme */
+/* =============================== */
+
+:root {
+  --neon-cyan: #00ffe0;
+  --neon-purple: #a855f7;
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --muted: #94a3b8;
+  --card-bg: #1e293b;
+  --accent: #00d4ff;
+  --soon: #facc15;
+  --now: #22c55e;
+  --live: #3b82f6;
+  --danger: #ef4444;
+  --success: #22c55e;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 24px;
+}
+
+.admin-header {
+  background: var(--card-bg);
+  padding: 24px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+}
+
+.admin-header h1 {
+  font-size: 2rem;
+  margin: 0;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-cyan));
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+
+#admin-welcome {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.admin-logout-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: var(--danger);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.admin-logout-button:hover {
+  background: #dc2626;
+}
+
+.admin-panel .admin-section {
+  background: var(--card-bg);
+  margin: 20px 0;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+}
+
+.admin-section h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-form input,
+.admin-form select {
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: #0f1c2e;
+  border: 1px solid #475569;
+  color: var(--foreground);
+  font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.admin-form input::placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.admin-form input:focus,
+.admin-form select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.create-button {
+  background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+  color: #0f172a;
+  padding: 0.9rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.create-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+}
+
+.tournament-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.tournament-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.tournament-card:hover {
+  transform: translateY(-4px);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.status-soon { background: var(--soon); color: #000; }
+.status-now { background: var(--now); color: #fff; }
+.status-ongoing { background: var(--live); color: #fff; }
+.status-completed { background: #64748b; color: #fff; }
+.status-cancelled { background: var(--danger); color: #fff; }
+.status-expired { background: #94a3b8; color: #333; }
+
+.tournament-time {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.tournament-time.live {
+  color: var(--now);
+  font-weight: bold;
+  animation: pulse-countdown 2s infinite;
+}
+
+.tournament-time.soon {
+  color: var(--soon);
+}
+
+@keyframes pulse-countdown {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.action-button {
+  background: #334155;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--foreground);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.action-button.delete { background: #dc2626; }
+.action-button.delete:hover { background: #b91c1c; }
+.action-button.update { background: #10b981; }
+.action-button.update:hover { background: #059669; }
+.action-button.view-players { background: #3b82f6; }
+.action-button.view-players:hover { background: #2563eb; }
+
+/* Right-side Players Panel */
+#players-right-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 350px;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.95);
+  color: white;
+  z-index: 999;
+  padding: 1rem;
+  overflow-y: auto;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.4);
+  transition: right 0.4s ease-in-out;
+  border-left: 1px solid #444;
+}
+
+#players-right-panel.visible {
+  right: 0;
+}
+
+#players-right-panel .panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+#players-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.player-list-item button {
+  width: 100%;
+  text-align: left;
+  color: var(--accent);
+  background: transparent;
+  border: none;
+  margin-bottom: 4px;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.player-list-item button:hover {
+  background: #222;
+}
+
+.player-details {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #141f2b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: var(--foreground);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.player-details p {
+  margin: 6px 0;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.player-details h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+
+.kick-player {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #e60000;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s ease-in-out;
+}
+
+.kick-player:hover {
+  background: #ff1a1a;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  .admin-header h1 {
+    font-size: 1.3rem;
+  }
+  .admin-logout-button {
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+  .admin-form input,
+  .admin-form select,
+  .admin-form .create-button {
+    font-size: 0.9rem;
+  }
+  .modal-content {
+    padding: 20px;
+    max-width: 95%;
+  }
+  .tournament-card {
+    padding: 15px;
+  }
+  .card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .action-button {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
+/* === Delete Confirmation Modal === */
+#delete-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#delete-modal:not(.hidden) {
+  display: flex;
+}
+
+#delete-modal .modal-content {
+  background: var(--card-bg);
+  color: var(--foreground);
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid var(--danger);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+}
+
+#delete-modal .modal-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#delete-modal .modal-actions button {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+#delete-modal .modal-actions .danger {
+  background: var(--danger);
+  color: white;
+}
+
+#delete-modal .modal-actions .danger:hover {
+  background: #b91c1c;
+}
+
+#delete-modal .modal-actions button:not(.danger) {
+  background: #334155;
+  color: var(--foreground);
+}
+
+#delete-modal .modal-actions button:not(.danger):hover {
+  background: #1e293b;
+}

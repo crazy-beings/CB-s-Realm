@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - CB's Realm</title>
+
+  <!-- 🔗 Styles -->
+  <link rel="stylesheet" href="styles/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 🔝 Admin Header -->
+  <header class="admin-header">
+    <h1><span>Admin Panel – Create & Manage Tournaments</span></h1>
+    <p id="admin-welcome">Welcome, Admin!</p>
+    <button id="admin-logout-btn" class="admin-logout-button">Logout</button>
+  </header>
+
+  <!-- 🔧 Admin Form Section -->
+  <div class="container admin-panel">
+    <section class="admin-section">
+      <h2><span>Create or Update Tournament</span></h2>
+      <form id="create-tournament-form" class="admin-form">
+        <input type="text" name="title" placeholder="Tournament Title" required />
+
+        <img id="preview-img" src="" alt="Preview" class="hidden tournament-img" />
+
+        <select id="category" name="category" required>
+          <option value="">Select Category</option>
+          <option value="br">Battle Royale</option>
+          <option value="cs">Clash Squad</option>
+          <option value="other">Other</option>
+        </select>
+
+        <select id="matchType" name="matchType" required>
+          <option value="">Select Match Type</option>
+        </select>
+
+        <input type="number" name="totalSeats" id="totalSeats" placeholder="Total Seats" required min="1" />
+        <input type="datetime-local" name="startTime" required />
+        <input type="number" name="entryFee" placeholder="Entry Fee (Coins)" required min="0" />
+        <input type="text" name="prize" placeholder="Prize (e.g., 500 PKR, 1000 Coins)" required />
+
+        <div id="room-type-wrapper" class="hidden">
+          <input type="text" name="roomType" placeholder="Room Type (e.g., Classic, Ranked)" />
+          <input type="text" name="roomId" placeholder="Room ID" />
+          <input type="text" name="roomPassword" placeholder="Room Password" />
+        </div>
+
+        <input type="text" name="gameUID" placeholder="Game UID (optional, for joining)" />
+
+        <div id="killPerPKR-wrapper" class="hidden">
+          <label for="killPerPkr">Kill per PKR (BR only):</label>
+          <input type="text" name="killPerPkr" id="killPerPkr" placeholder="e.g. 5 PKR per kill" />
+        </div>
+
+        <label class="checkbox-label">
+          <input type="checkbox" name="requireGameUID" id="requireGameUID" />
+          Require Game UID for joining
+        </label>
+
+        <select name="status" required>
+          <option value="soon">Soon</option>
+          <option value="now">Now</option>
+          <option value="ongoing">Ongoing</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+
+        <button type="submit" class="create-button">Save Tournament</button>
+      </form>
+    </section>
+
+    <!-- 📋 Tournament List Section -->
+    <section class="admin-section tournament-list-section">
+      <h2><span>Existing Tournaments</span></h2>
+      <div id="admin-tournaments" class="tournament-cards-container">
+        <p>Loading tournaments...</p>
+      </div>
+    </section>
+  </div>
+
+  
+
+  <!-- 💬 Message Modal -->
+  <div id="message-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-button" id="message-modal-close">&times;</span>
+      <p id="modal-message-text"></p>
+    </div>
+  </div>
+<div id="players-right-panel" class="right-panel hidden">
+  <div class="panel-header">
+    <h2>Players</h2>
+    <button id="players-close-btn" class="close-btn">✖</button>
+  </div>
+  <p id="players-count">Total Joined: 0</p>
+  <ul id="players-list"></ul>
+  <div id="player-details" class="player-details">Select a player to view details.</div>
+</div>
+<div id="delete-modal" class="modal hidden">
+  <div class="modal-content">
+    <p id="delete-modal-msg">Are you sure?</p>
+    <div class="modal-actions">
+      <button id="confirm-delete-btn" class="danger">Yes, Delete</button>
+      <button id="cancel-delete-btn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+  <!-- 🔌 Admin Script -->
+ <script type="module" src="scripts/admin.js"></script>
+
+</body>
+</html>
